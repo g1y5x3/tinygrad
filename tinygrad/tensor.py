@@ -110,10 +110,10 @@ class Tensor:
     self.lazydata.device = device
     if self.grad: self.grad.to_(device)
 
-  def to(self, device:str) -> Tensor:
-    ret = Tensor(self.lazydata, device)
-    if self.grad: ret.grad = self.grad.to(device)
-    return ret
+#  def to(self, device:str) -> Tensor:
+#    ret = Tensor(self.lazydata, device)
+#    if self.grad: ret.grad = self.grad.to(device)
+#    return ret
 
   # ***** creation llop entrypoint *****
 
