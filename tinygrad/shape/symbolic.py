@@ -67,6 +67,10 @@ class Node:
     if self.min > b >= 0: return NumNode(0)
     if isinstance(self, NumNode): return NumNode(b // self.b)
     raise RuntimeError(f"not supported: {b} // {self}")
+  def __rfloordiv__copy(self, b:int):
+    if self.min > b >= 0: return NumNode(0)
+    if isinstance(self, NumNode): return NumNode(b // self.b)
+    raise RuntimeError(f"not supported: {b} // {self}")
   def __floordiv__(self, b:Union[Node,int], factoring_allowed=True):
     if isinstance(b, Node):
       if b.__class__ is NumNode: return self // b.b
