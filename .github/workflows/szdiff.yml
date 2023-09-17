@@ -8,6 +8,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  checkbranch:
+    name: Check PR Branch status
+    runs-on: ubuntu-latest
+      #outputs:
+      #  branch_update: ${{ steps.check.outputs.}}$
+    steps:
+      - name: Check whether branch is up-to-date
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: '0'
+        id: check
+        run: |
+          git add remote tinygrad https://github.com/tinygrad/tinygrad
+          git fetch tinygrad master
+          git rev-list --left-right --count  tinygrad/master...${{ github.event.pull_request.head.sha }}
+
   szdiff:
     name: Core Library Line Difference
     permissions:
