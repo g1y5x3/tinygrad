@@ -12,6 +12,7 @@ from tinygrad.lazy import LazyBuffer
 from tinygrad.ops import Device, LoadOps
 from tinygrad.shape.symbolic import sint
 
+print("hello world")
 
 # An instantiation of the Function is the Context
 class Function:
